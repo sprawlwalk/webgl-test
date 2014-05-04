@@ -8,16 +8,17 @@
         init();
         tick();
 
-        // handle resizing windows
-        window.addEventListener( 'resize', onWindowResize, false );
-
+        // Private methods        
+        
         function onWindowResize(){
+            // Handle resizing windows
 
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
 
             renderer.setSize( window.innerWidth, window.innerHeight );
         }
+        window.addEventListener( 'resize', onWindowResize, false );
         
         function tick() {
             update();
@@ -49,18 +50,37 @@
             
             var max = 1000,
                 min = -1000,
-                currentPos,
+                currentPos, currentScale,
                 nCubes = 30;
 
-            //Init cubes
+            //Init cubes            
             for(var i = 0; i < nCubes; i++) {
                 currentPos = new THREE.Vector3(getRandomArbitrary(min, max),getRandomArbitrary(min, max),getRandomArbitrary(min, max));
                 objects.push( new Cube(currentPos) );
-            }
-
+            }            
+           
+            // Add debug axes
+            objects.push( new Axes(1000) );
+            
+            //Init text labels            
+            currentPos = { x: 0, y: 0, z: 0 },
+            currentScale = { x: 1000, y: 500, z: 1.0 };
+            objects.push( new SpriteText( "Testing", { 
+                position: currentPos,
+                scale: currentScale,
+                fontsize: 24, 
+                borderColor: {r:0, g:0, b:0, a:1.0},
+                fontColor: {r:0, g:255, b:0, a:1.0},
+                backgroundColor: {r:0, g:0, b:0, a:0.7} }
+            ));
+            
+            currentPos = new THREE.Vector3(0,0,0);
+            objects.push( new Cube(currentPos) );
+            
             for( var i=0; i < objects.length; i++ ) {
                     objects[i].init(scene);
             }
+            
 	};
 
 	function draw() {
@@ -98,5 +118,16 @@
 	 			obj.update();
  		}
 	}
+        
+        // Public methods
+        worldEngine.giveMeObject = function ( id ) {                
+                for( var i=0; i < objects.length; i++ ) {
+                        var obj = objects[i];
+                        if ( obj.hasOwnProperty('id') && obj.id === id ) {
+                                return obj;
+                        }
+                }
+                return null;
+        };
         
 }( window.worldEngine = window.worldEngine || {} ));
