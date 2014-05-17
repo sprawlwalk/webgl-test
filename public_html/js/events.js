@@ -5,11 +5,27 @@ document.onkeypress = function(e) {
 
 	if ( keycodeStr === 'x' ) {
                 var obj = worldEngine.giveMeObject('axes');
-                if (obj.isVisible()) {
-                    obj.showHide('hide');
-                } else {
-                    obj.showHide('show');
+                
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].isVisible()) {
+                        obj[i].showHide('hide');
+                    } else {
+                        obj[i].showHide('show');
+                    }
                 }
+                
+                
+		console.log('"' + String.fromCharCode(e.charCode) +'" key pressed');
+	}
+        
+        if ( keycodeStr === 'a' ) {
+                var obj = worldEngine.giveMeObject('cube');
+                
+                for (var i = 0; i < obj.length; i++) {
+                    obj[i].stopRotation();                
+                    obj[i].startMove('toOrigin', 10);
+                }
+                
 		console.log('"' + String.fromCharCode(e.charCode) +'" key pressed');
 	}
 };
