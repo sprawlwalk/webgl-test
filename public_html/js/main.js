@@ -108,7 +108,7 @@
 	};
 
 	function update() {
-		cameraMovement();                
+		//cameraMovement();                
                 
 		for( var i=0; i < objects.length; i++ )
  		{
@@ -120,14 +120,16 @@
 	}
         
         // Public methods
-        worldEngine.giveMeObject = function ( id ) {                
+        worldEngine.giveMeObject = function ( id ) {
+                var objectsArray = [];
+            
                 for( var i=0; i < objects.length; i++ ) {
                         var obj = objects[i];
                         if ( obj.hasOwnProperty('id') && obj.id === id ) {
-                                return obj;
+                                objectsArray.push(obj);
                         }
                 }
-                return null;
+                return objectsArray;
         };
         
 }( window.worldEngine = window.worldEngine || {} ));
