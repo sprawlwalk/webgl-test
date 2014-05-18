@@ -8,11 +8,10 @@
         init();
         tick();
 
-        // Private methods        
+        /* Private methods */
         
         function onWindowResize(){
             // Handle resizing windows
-
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
 
@@ -70,7 +69,7 @@
             //Init text labels            
             currentPos = { x: 0, y: 0, z: 0 },
             currentScale = { x: 1000, y: 500, z: 1.0 };
-            objects.push( new SpriteText( "Testing", { 
+            objects.push( new SpriteText( "Press 'A' key", { 
                 position: currentPos,
                 scale: currentScale,
                 fontsize: 24, 
@@ -78,9 +77,6 @@
                 fontColor: {r:0, g:255, b:0, a:1.0},
                 backgroundColor: {r:0, g:0, b:0, a:0.7} }
             ));
-            
-            currentPos = new THREE.Vector3(0,0,0);
-            objects.push( new Cube(currentPos) );
             
             for( var i=0; i < objects.length; i++ ) {
                     objects[i].init(scene);
@@ -124,7 +120,8 @@
  		}
 	}
         
-        // Public methods
+        /* Public methods */
+        
         worldEngine.giveMeObject = function ( id ) {
                 var objectsArray = [];
             

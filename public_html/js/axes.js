@@ -15,7 +15,10 @@ Axes.prototype = {
         this.axes.add( this.buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, -this.length, 0 ), 0x00FF00, true ) ); // -Y
         this.axes.add( this.buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, this.length ), 0x0000FF, false ) ); // +Z
         this.axes.add( this.buildAxis( new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -this.length ), 0x0000FF, true ) ); // -Z        
-
+        
+        //Hide by default
+        this.showHide('hide');
+        
         scene.add( this.axes );
     },
     showHide: function (option)  {
