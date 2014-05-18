@@ -41,6 +41,11 @@
             camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 10000);
             camera.position.set( 0, 0, 3000 );
             camera.lookAt( scene.position );
+            
+            //Light
+            var light = new THREE.PointLight(0xffffff);
+            light.position.set(0,150,100);
+            scene.add(light);
 
             initItems();
 	};
@@ -55,7 +60,7 @@
 
             //Init cubes            
             for(var i = 0; i < nCubes; i++) {
-                currentPos = new THREE.Vector3(getRandomArbitrary(min, max),getRandomArbitrary(min, max),getRandomArbitrary(min, max));
+                currentPos = new THREE.Vector3(getRandomArbitrary(min, max),getRandomArbitrary(min, max), getRandomArbitrary(min, max));
                 objects.push( new Cube(currentPos) );
             }            
            
@@ -108,7 +113,7 @@
 	};
 
 	function update() {
-		//cameraMovement();                
+		cameraMovement();
                 
 		for( var i=0; i < objects.length; i++ )
  		{

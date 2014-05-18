@@ -23,7 +23,7 @@ document.onkeypress = function(e) {
                 
                 for (var i = 0; i < obj.length; i++) {
                     obj[i].stopRotation();                
-                    obj[i].startMove('toOrigin', 10);
+                    obj[i].startMove('toOrigin', 2);
                 }
                 
 		console.log('"' + String.fromCharCode(e.charCode) +'" key pressed');
