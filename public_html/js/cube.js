@@ -47,7 +47,7 @@ Cube.prototype = {
         this.mesh.rotation.y += getRandomArbitrary(0.01, 0.03);
     },
     moveToOrigin: function ()  {
-        this.mesh.translateZ(this.speed);        
+        this.mesh.translateZ(this.speed);
     },
     explosion: function ()  {
         if (Math.abs(this.position.x) < 1000 && Math.abs(this.position.y) < 1000 && Math.abs(this.position.y < 1000)) {            

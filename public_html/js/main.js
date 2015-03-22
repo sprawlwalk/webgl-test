@@ -47,6 +47,8 @@
             scene.add(light);
 
             initItems();
+
+            console.log('test');
 	};
 
 	function initItems() {
